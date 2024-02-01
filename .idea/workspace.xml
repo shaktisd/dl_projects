@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30defd9b-7ffb-4d3f-9202-d793fd8f3a7e" name="Changes" comment="Self Attention Model Examples">
-      <change afterPath="$PROJECT_DIR$/readmegit.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="30defd9b-7ffb-4d3f-9202-d793fd8f3a7e" name="Changes" comment="How to setup git repo">
+      <change afterPath="$PROJECT_DIR$/00_attention_example/sentiment_example/train_without_attention_v0.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -17,12 +16,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "shaktisd"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;shaktisd&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -48,10 +47,15 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/datascience/projects/103_pytorch_projects/dl_projects"
+    "last_opened_file_path": "C:/datascience/projects/103_pytorch_projects/dl_projects/00_attention_example/sentiment_example"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\datascience\projects\103_pytorch_projects\dl_projects\00_attention_example\sentiment_example" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.train_v2">
     <configuration name="train_v2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="dl_projects" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -73,9 +77,31 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="train_without_attention_v0" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="dl_projects" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/00_attention_example/sentiment_example" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/00_attention_example/sentiment_example/train_without_attention_v0.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.train_v2" />
+        <item itemvalue="Python.train_without_attention_v0" />
       </list>
     </recent_temporary>
   </component>
@@ -152,7 +178,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706716663950</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="How to setup git repo">
+      <option name="closed" value="true" />
+      <created>1706717200880</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1706717200880</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -168,7 +202,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Self Attention Model Examples" />
-    <option name="LAST_COMMIT_MESSAGE" value="Self Attention Model Examples" />
+    <MESSAGE value="How to setup git repo" />
+    <option name="LAST_COMMIT_MESSAGE" value="How to setup git repo" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
