@@ -21,9 +21,8 @@ class Dictionary(object):
             file_path = "small_imdb.csv"
         df = pd.read_csv(file_path)
 
-        df['small_review'] = df['review'].str.lower().str.split(n=self.max_len).str[:self.max_len].str.join(' ')
-        df['small_review'] = df['small_review'].apply(lambda x:  re.sub(r'[^a-z ]+', ' ', x))
-        df.to_csv("imdb_small_review.csv",index=False)
+        df['small_review'] = df['review'].str.split(n=self.max_len).str[:self.max_len].str.join(' ')
+        df['small_review'] = df['small_review'].apply(lambda x:  re.sub(r'[^a-z ]+', '', x))
         text = " ".join(df['small_review'].str.lower().to_list())
         text = re.sub(r'[^a-z ]+', '', text)
         words = text.split()
@@ -88,15 +87,24 @@ def get_data(df: pd.DataFrame, data: Dictionary, max_len=32) -> (torch.Tensor, t
 
 
 class Model(nn.Module):
-    def __init__(self, max_len, embedding_dim, vocab_size, qkv_dim, hidden):
+    def __init__(self, max_len, embedding_dim, vocab_size, qkv_dim, hidden, num_heads):
         super().__init__()
         self.max_len = max_len
         self.embedding_dim = embedding_dim
         self.vocab_size = vocab_size
         self.qkv_dim = qkv_dim
         self.hidden = hidden
+        self.num_heads = num_heads
 
-        self.self_attention_model = AttentionModel(embedding_dim=embedding_dim, vocab_size=vocab_size, max_len=max_len, qkv_dim=self.qkv_dim)
+        self.embedding_layer = nn.Embedding(self.vocab_size, self.embedding_dim)
+        self.query = nn.Linear(self.embedding_dim, self.qkv_dim, bias=False)
+        self.key = nn.Linear(self.embedding_dim, self.qkv_dim, bias=False)
+        self.value = nn.Linear(self.embedding_dim, self.qkv_dim, bias=False)
+
+
+        #self.self_attention_model = AttentionModel(embedding_dim=embedding_dim, vocab_size=vocab_size, max_len=max_len, qkv_dim=self.qkv_dim)
+        self.multihead_attn = nn.MultiheadAttention(self.embedding_dim, self.num_heads, batch_first=True)
+
         self.linear1 = nn.Linear(self.max_len * self.qkv_dim, self.embedding_dim)
         self.relu = nn.ReLU()
         self.linear2 = nn.Linear(self.embedding_dim, self.hidden)
@@ -105,8 +113,16 @@ class Model(nn.Module):
         self.linear3 = nn.Linear(self.hidden, 1)
 
     def forward(self, x):
-        weighted = self.self_attention_model(x)
-        flat_weights = weighted.view(weighted.shape[0], -1)
+
+        x_embedding = self.embedding_layer(x)
+        q = self.query(x_embedding)
+        k = self.key(x_embedding)
+        v = self.value(x_embedding)
+
+        attn_output, attn_output_weights = self.multihead_attn(q, k, v)
+
+        weighted = attn_output
+        flat_weights = weighted.reshape(weighted.shape[0], -1)
         output = self.linear1(flat_weights)
         output = self.relu(output)
         output = self.linear2(output)
@@ -116,12 +132,13 @@ class Model(nn.Module):
         return output
 
 def main():
-    embedding_dim = 16
+    embedding_dim = 64
     max_len = 32
-    num_epochs = 5
-    mini_batch_size = 64
-    qkv_dim = 8
+    num_epochs = 50
+    mini_batch_size = 32
+    qkv_dim = 64
     hidden = 16
+    num_heads = 1
 
     file_path = "imdb_clean.csv"
     data = Dictionary(file_path=file_path, max_len=max_len)
@@ -132,16 +149,15 @@ def main():
     vocab_size = len(data.vocab)
     print(f'Vocab Size {vocab_size}')
 
-    model = Model(embedding_dim=embedding_dim, vocab_size=vocab_size, max_len=max_len, qkv_dim=qkv_dim, hidden=hidden)
+    model = Model(embedding_dim=embedding_dim, vocab_size=vocab_size, max_len=max_len, qkv_dim=qkv_dim, hidden=hidden, num_heads=num_heads)
     criterion = nn.BCELoss()
     #criterion = nn.BCEWithLogitsLoss
     #criterion = nn.MSELoss()
 
     optimizer = optim.Adam(model.parameters(), lr=0.001)
 
-    x, y = get_data(df, data,max_len=max_len)
+    x, y = get_data(df, data)
     x_train, x_test, y_train, y_test = train_test_split(x,y,test_size=0.1,random_state=42)
-    x_train_index, x_test_index = train_test_split(df.index, test_size=0.1, random_state=42)
     batch_start = torch.arange(0, len(x_train), mini_batch_size)
 
     # Hold the best model
@@ -177,20 +193,21 @@ def main():
             # evaluate accuracy at end of each epoch
             model.eval()
             y_test_pred = model(x_test)
-            test_acc = (y_test_pred.round() == y_test).float().mean()
-            test_acc = float(test_acc)
-            print(f"Epoch: {epoch} Train Loss: {loss} Train Acc: {acc} Test Acc: {test_acc}")
-            test_result = torch.eq(y_test_pred.round(),y_test).squeeze(1)
-            test_df = df.iloc[x_test_index]
-            wrong_predictions = test_df.loc[test_result.tolist()]
-            wrong_predictions.to_csv("wrong_predictions.csv")
-
-            # if acc > best_acc:
-            #     best_acc = acc
+            #test_acc = (y_test_pred.round() == y_test).float().mean()
+            print(f"Epoch: {epoch} Train Loss: {loss} Train Acc: {acc} ")
+            print_accuracy_threshold(y_test_pred, y_test)
 
     # Save Model
     print("Saving Model")
     torch.save(model.state_dict(), 'imdb_sentiment_model.pth')
+
+def print_accuracy_threshold(y_test_pred, y_test):
+    start = 0.0
+    end = 1.0
+    gap = 0.1
+    for i in torch.arange(start, end + gap, gap):
+        result = (torch.eq((y_test_pred - i > 0.0).float(), y_test) ).float().mean()
+        print(i, result)
 
 if __name__ == '__main__':
     main()

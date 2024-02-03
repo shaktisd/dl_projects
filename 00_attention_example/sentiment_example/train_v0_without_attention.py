@@ -27,8 +27,8 @@ class Dictionary(object):
         text = re.sub(r'[^a-z ]+', '', text)
         words = text.split()
         self.vocab = sorted(list(set(words)))
-        self.vocab.insert(0,self.OOV)
-        self.vocab.insert(1, self.PAD)
+        self.vocab.insert(0, self.OOV)
+        self.vocab.insert(1,  self.PAD)
         for index, word in enumerate(self.vocab):
             self.index2word[index] = word
             self.word2index[word] = index
