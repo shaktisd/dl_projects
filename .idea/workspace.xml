@@ -4,18 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30defd9b-7ffb-4d3f-9202-d793fd8f3a7e" name="Changes" comment="Added training without attention. Clearly shows attention added extra 4% of accuracy in test results.">
-      <change afterPath="$PROJECT_DIR$/00_attention_example/sentiment_example/readme.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/00_attention_example/sentiment_example/train_v3_with_pytorch_multihead_attention.py" afterDir="false" />
+    <list default="true" id="30defd9b-7ffb-4d3f-9202-d793fd8f3a7e" name="Changes" comment="Added training with multihead attention. Not much difference.&#10;Analyzed the final error in test results. Many first 32 word reviews are not properly written. overall getting 75% accuracy with attention on test data.">
+      <change afterPath="$PROJECT_DIR$/00_attention_example/sentiment_example/new_dataset.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/00_attention_example/sentiment_example/split_data.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/00_attention_example/sentiment_example/train_v3.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/00_attention_example/sentiment_example/.ipynb_checkpoints/01_sentiment_using_attention-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/00_attention_example/sentiment_example/.ipynb_checkpoints/01_sentiment_using_attention-checkpoint.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/00_attention_example/sentiment_example/01_sentiment_using_attention.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/00_attention_example/sentiment_example/01_sentiment_using_attention.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/00_attention_example/sentiment_example/train_v2.py" beforeDir="false" afterPath="$PROJECT_DIR$/00_attention_example/sentiment_example/train_v2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/00_attention_example/sentiment_example/train_without_attention_v0.py" beforeDir="false" afterPath="$PROJECT_DIR$/00_attention_example/sentiment_example/train_v0_without_attention.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -64,8 +71,8 @@
       <recent name="C:\datascience\projects\103_pytorch_projects\dl_projects\00_attention_example\sentiment_example" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.train_v2">
-    <configuration name="train_v0_without_attention" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.train_v3">
+    <configuration name="new_dataset" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="dl_projects" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -77,7 +84,28 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="C:\datascience\projects\103_pytorch_projects\dl_projects\00_attention_example\sentiment_example\train_v0_without_attention.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/00_attention_example/sentiment_example/new_dataset.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="split_data" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="dl_projects" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/00_attention_example/sentiment_example" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/00_attention_example/sentiment_example/split_data.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -99,6 +127,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/00_attention_example/sentiment_example/train_v2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="train_v3" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="dl_projects" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/00_attention_example/sentiment_example" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/00_attention_example/sentiment_example/train_v3.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -130,9 +179,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.train_v3" />
+        <item itemvalue="Python.new_dataset" />
+        <item itemvalue="Python.split_data" />
         <item itemvalue="Python.train_v2" />
         <item itemvalue="Python.train_v3_with_pytorch_multihead_attention" />
-        <item itemvalue="Python.train_v0_without_attention" />
       </list>
     </recent_temporary>
   </component>
@@ -233,7 +284,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706758764664</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Added training with multihead attention. Not much difference.&#10;Analyzed the final error in test results. Many first 32 word reviews are not properly written. overall getting 75% accuracy with attention on test data.">
+      <option name="closed" value="true" />
+      <created>1706983234115</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1706983234115</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -254,7 +313,8 @@
     <MESSAGE value="Self Attention Model Examples" />
     <MESSAGE value="How to setup git repo" />
     <MESSAGE value="Added training without attention. Clearly shows attention added extra 4% of accuracy in test results." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added training without attention. Clearly shows attention added extra 4% of accuracy in test results." />
+    <MESSAGE value="Added training with multihead attention. Not much difference.&#10;Analyzed the final error in test results. Many first 32 word reviews are not properly written. overall getting 75% accuracy with attention on test data." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added training with multihead attention. Not much difference.&#10;Analyzed the final error in test results. Many first 32 word reviews are not properly written. overall getting 75% accuracy with attention on test data." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -293,6 +353,16 @@
           <url>file://$PROJECT_DIR$/00_attention_example/sentiment_example/train_v2.py</url>
           <line>184</line>
           <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/00_attention_example/sentiment_example/train_v2.py</url>
+          <line>144</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/00_attention_example/sentiment_example/train_v3.py</url>
+          <line>210</line>
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

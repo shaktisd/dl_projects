@@ -1,1 +1,9 @@
 /00_attention_example/sentiment_example/imdb_sentiment_model.pth
+/00_attention_example/sentiment_example/imdb_small_review.csv
+/00_attention_example/sentiment_example/predicted_test_df.csv
+/00_attention_example/sentiment_example/.ipynb_checkpoints/predicted_test_df-checkpoint.csv
+/00_attention_example/sentiment_example/result_wrong_df.csv
+/00_attention_example/sentiment_example/.ipynb_checkpoints/result_wrong_df-checkpoint.csv
+/00_attention_example/sentiment_example/wrong_predictions.csv
+/00_attention_example/sentiment_example/.ipynb_checkpoints/wrong_predictions-checkpoint.csv
+/00_attention_example/sentiment_example/x_test.csv
