@@ -21,7 +21,7 @@ class Dictionary(object):
         self.max_len = max_len
         if file_path is None:
             file_path = "small_imdb.csv"
-        df = pd.read_csv(file_path)
+        df = pd.read_csv(file_path, encoding='latin-1')
 
         df['small_review'] = df['review'].str.lower().str.split(n=self.max_len).str[:self.max_len].str.join(' ')
         df['small_review'] = df['small_review'].apply(lambda x:  re.sub(r'[^a-z ]+', ' ', x))
@@ -137,17 +137,17 @@ class Model(nn.Module):
 
 def main():
     torch.manual_seed(42)
-    embedding_dim = 128
+    embedding_dim = 64
     max_len = 128
-    num_epochs = 10
-    mini_batch_size = 64
-    qkv_dim = 32
+    num_epochs = 5
+    mini_batch_size = 32
+    qkv_dim = 64
     hidden = 32
     test_size = 0.1
 
-    file_path = "imdb_clean.csv"
+    file_path = "finance_clean.csv"
     data = Dictionary(file_path=file_path, max_len=max_len)
-    df = pd.read_csv(file_path)
+    df = pd.read_csv(file_path, encoding='latin-1')
 
     df['small_review'] = df['review'].str.lower().str.split(n=max_len).str[:max_len].str.join(' ')
     df['small_review'] = df['small_review'].apply(lambda x: re.sub(r'[^a-z ]+', ' ', x))
